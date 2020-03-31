@@ -4,7 +4,7 @@
 class Database
 {
 	private static $instance = null;
-	private $pdo, $error = false, $result, $query;
+	private $pdo, $error = false, $result, $query, $count;
 	
 	public function __construct()
 	{
@@ -26,19 +26,25 @@ class Database
 	}
 	
 	
-	public function query($sql){
+	public function query($sql, $params){
+	
+		
 		$this->error = false;
-		
 		$this->query = $this->pdo->prepare($sql);
-		$this->query->execute();
 		
+		$i = 1;
+		foreach ($params as $param){
+			$this->query->bindValue($i, $param);
+			$i++;
+		}
+
 
 		if(!$this->query->execute()){
 			$this->error = true;
 		}
 		else{
 			$this->result = $this->query->fetchAll(PDO::FETCH_OBJ);
-			
+			$this->count = $this->query->rowCount();
 		}
 		return $this;
 	}
@@ -71,6 +77,29 @@ class Database
 		
 		return $this->action('DELETE', $table, $fields);
 		
+	}
+	
+	
+	public function insert($table, $fields = []){
+
+		#SQL Example = "INSERT INTO users (`username`,`email`,`password`,`status`) VALUES (?,?,?,?)"
+
+		$value = '';
+		foreach ($fields as $field){
+			$value .= '?,';
+		}
+		$value = rtrim($value, ',');
+
+
+		$keys = array_keys($fields);
+		$keysString = implode('`,`', $keys);
+
+		$sql = "INSERT INTO {$table} (`$keysString`) VALUES ({$value})";
+
+		if(!$this->query($sql, $fields)->showErrors()){
+			return true;
+		}
+
 	}
 	
 	
