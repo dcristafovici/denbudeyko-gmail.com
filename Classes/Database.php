@@ -10,7 +10,7 @@ class Database
 	{
 		
 		try{
-			$this->pdo = new PDO('mysql:host=localhost;dbname=simple', 'mysql', 'mysql');
+			$this->pdo = new PDO("mysql:host=".Config::get('mysql.host'). ";dbname=".Config::get('mysql.database')."", Config::get('mysql.username'), Config::get('mysql.password'));
 		}
 		catch (PDOException $e){
 			echo "Подключение не удалось". $e->getMessage();
