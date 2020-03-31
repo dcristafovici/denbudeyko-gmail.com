@@ -58,7 +58,7 @@ class Database
 		
 		if(in_array($operator, $operators)){
 			$sql = "{$action} FROM {$table} WHERE {$field} {$operator} '${value}' ";
-			$this->query($sql);
+			$this->query($sql, $fields);
 			return $this;
 		}
 		
@@ -82,8 +82,6 @@ class Database
 	
 	public function insert($table, $fields = []){
 
-		#SQL Example = "INSERT INTO users (`username`,`email`,`password`,`status`) VALUES (?,?,?,?)"
-
 		$value = '';
 		foreach ($fields as $field){
 			$value .= '?,';
@@ -102,6 +100,31 @@ class Database
 
 	}
 	
+	
+	public function update($table, $id, $fields){
+		
+		$set = '';
+		foreach($fields as $field=>$field_value){
+			$set .= "{$field} = ?,";
+		}
+		$set =rtrim($set, ',');
+
+		
+		$sql = "UPDATE {$table} set {$set} WHERE id = $id";
+	
+		if(!$this->query($sql,$fields)->showErrors()){
+			return true;
+		}
+		return false;
+		
+		
+	}
+	
+	public function first(){
+
+		return $this->showResult()[0];
+		
+	}
 	
 	
 	public function showErrors(){

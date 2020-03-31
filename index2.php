@@ -3,9 +3,6 @@
 require_once 'init.php';
 
 
-Database::getInstance()->insert('users',[
-	'username' => 'Moderator',
-	'email' => 'moderator@mail.ru',
-	'password' => 'modpassword',
-	'status' => "I'm new moderator"
-]);
+$user = Database::getInstance()->get('users', ['username','=', 'Moderator'])->first();
+
+var_dump($user->username);
