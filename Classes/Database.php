@@ -32,15 +32,46 @@ class Database
 		$this->query = $this->pdo->prepare($sql);
 		$this->query->execute();
 		
+
 		if(!$this->query->execute()){
 			$this->error = true;
 		}
 		else{
 			$this->result = $this->query->fetchAll(PDO::FETCH_OBJ);
+			
 		}
 		return $this;
 	}
 	
+	public function action($action, $table, $fields = []){
+		
+		$operators = ['<', '>', '=', '<=', '>='];
+		$field = $fields[0];
+		$operator = $fields[1];
+		$value = $fields[2];
+		
+		if(in_array($operator, $operators)){
+			$sql = "{$action} FROM {$table} WHERE {$field} {$operator} '${value}' ";
+			$this->query($sql);
+			return $this;
+		}
+		
+		return false;
+		
+	}
+	
+	public function get($table, $fields = []){
+		
+		return $this->action('SELECT * ', $table, $fields);
+		
+	
+	}
+	
+	public function delete($table, $fields = []){
+		
+		return $this->action('DELETE', $table, $fields);
+		
+	}
 	
 	
 	
