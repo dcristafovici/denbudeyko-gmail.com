@@ -1,3 +1,13 @@
+<?php
+
+require_once "init.php";
+
+$idUser = (int) $_GET['id'];
+$user = new User($idUser);
+$data = $user->data();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Главная</a>
+            <a class="nav-link" href="index.php">Главная</a>
           </li>
         </ul>
 
@@ -50,10 +60,10 @@
 
            <tbody>
              <tr>
-               <td>2</td>
-               <td>Джон</td>
-               <td>25/02/2025</td>
-               <td>Привет! Я новый пользователь вашего проекта, хочу перейти на уровень 3!</td>
+               <td><?php echo $data->id?></td>
+               <td><?php echo $data->username?></td>
+               <td><?php echo $data->user_registered?></td>
+               <td><?php echo $data->status?></td>
              </tr>
            </tbody>
          </table>

@@ -7,6 +7,7 @@ $user = new User();
 if($user->isLoggedIn()){
 	
 	echo 'Hello '.$user->data()->username."<br>";
+	echo "<a href='logout.php'>Logout</a>";
 	
 }
 else{

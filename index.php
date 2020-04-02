@@ -1,6 +1,8 @@
 <?php
 require_once 'init.php';
+$profile = new User();
 $users = Database::getInstance()->query("SELECT * FROM users", []);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,12 +32,18 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
         </ul>
 
         <ul class="navbar-nav">
+            <?php if(!$profile->isLoggedIn()): ?>
           <li class="nav-item">
-            <a href="#" class="nav-link">Войти</a>
+            <a href="login.php" class="nav-link">Войти</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Регистрация</a>
+            <a href="register.php" class="nav-link">Регистрация</a>
           </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a href="logout.php" class="nav-link">Выйти</a>
+                </li>
+            <?php endif; ?>
         </ul>
       </div>
     </nav>
@@ -43,13 +51,20 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="jumbotron">
-          <h1 class="display-4">Привет, мир!</h1>
+          <div class="jumbotron">
+          <?php if($profile->isLoggedIn()): ?>
+        
+          <h1 class="display-4">Привет, <?php echo $profile->data()->email;?></h1>
           <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
-          <hr class="my-4">
-          <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">Зарегистрироваться</a>
+          
         </div>
+          <?php else : ?>
+              <h1 class="display-4">Привет, мир</h1>
+              <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
+              <hr class="my-4">
+              <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
+              <a class="btn btn-primary btn-lg" href="#" role="button">Зарегистрироваться</a>
+          <?php endif; ?>
       </div>
     </div>
 
@@ -72,7 +87,7 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
           <?php foreach($users->showResult() as $user): ?>
             <tr>
               <td><?php echo $user->id;?></td>
-              <td><a href="#"><?php echo $user->username;?></a></td>
+              <td><a href="user_profile.php?id=<?php echo $user->id?>"><?php echo $user->username;?></a></td>
               <td><?php echo $user->email;?></td>
               <td><?php echo $user->user_registered?></td>
             </tr>
