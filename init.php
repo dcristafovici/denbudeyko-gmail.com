@@ -8,6 +8,7 @@ require_once "Classes/Validate.php";
 require_once "Classes/Session.php";
 require_once "Classes/Token.php";
 require_once "Classes/User.php";
+require_once "Classes/Redirect.php";
 
 $GLOBALS['config'] = [
 	
@@ -18,6 +19,7 @@ $GLOBALS['config'] = [
 		"password" => "mysql",
 	],
 	"session"=>[
-		"token_name" => "token"
+		"token_name" => "token",
+		"user_session" => 'user'
 	]
 ];

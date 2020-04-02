@@ -42,7 +42,7 @@ if (Input::exists()) {
 		if ($validation->success()) {
 		    $formValidate = true;
 			Session::flash('success', 'Форма отправлена. Проверьте ваш е-майл');
-			
+		
 			$password = password_hash(Input::get("password"), PASSWORD_DEFAULT);
 			$user = new User();
 			$user->create([
