@@ -5,6 +5,7 @@ require_once 'init.php';
 
 if (Input::exists()) {
 	
+ if(Token::check(Input::get('token'))){
 	
 	$validation = new Validate();
 	
@@ -51,7 +52,7 @@ if (Input::exists()) {
 			echo $error . "<br>";
 		}
 	}
-	
+ }
 }
 
 
@@ -79,6 +80,8 @@ if (Input::exists()) {
         <textarea name="status" placeholder="status"></textarea>
     </div>
 
+    <input type="hidden" name="token" value="<?php echo Token::generate()?>">
+    
     <div class="form-group">
         <button>
             <span>Submit</span>
