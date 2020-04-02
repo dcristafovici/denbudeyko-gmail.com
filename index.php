@@ -1,6 +1,6 @@
 <?php
 require_once 'init.php';
-$users = Database::getInstance()->query("SELECT * FROM users");
+$users = Database::getInstance()->query("SELECT * FROM users", []);
 ?>
 <!DOCTYPE html>
 <html lang="en">

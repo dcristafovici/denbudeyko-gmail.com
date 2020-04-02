@@ -66,6 +66,9 @@ class Database
 		
 	}
 	
+	public function count(){
+		return $this->count;
+	}
 	public function get($table, $fields = []){
 		
 		return $this->action('SELECT * ', $table, $fields);

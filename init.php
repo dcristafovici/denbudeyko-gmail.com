@@ -2,7 +2,8 @@
 
 require_once "Classes/Database.php";
 require_once "Classes/Config.php";
-
+require_once "Classes/Input.php";
+require_once "Classes/Validate.php";
 
 $GLOBALS['config'] = [
 	
