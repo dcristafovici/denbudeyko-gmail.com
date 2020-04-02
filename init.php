@@ -7,6 +7,7 @@ require_once "Classes/Input.php";
 require_once "Classes/Validate.php";
 require_once "Classes/Session.php";
 require_once "Classes/Token.php";
+require_once "Classes/User.php";
 
 $GLOBALS['config'] = [
 	

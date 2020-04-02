@@ -47,6 +47,16 @@ if (Input::exists()) {
 	
 	if ($validation->success()) {
 		Session::flash('success','Form send to success');
+		$password = password_hash(Input::get("password"),PASSWORD_DEFAULT );
+		$user = new User();
+		$user->create([
+			"username" => Input::get('username'),
+			"email" => Input::get('email'),
+			"password" => $password,
+			"status" => Input::get('status')
+
+		]);
+		
 	} else {
 		foreach ($validation->printErrors() as $error) {
 			echo $error . "<br>";
