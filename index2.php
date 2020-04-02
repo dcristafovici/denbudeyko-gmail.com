@@ -46,7 +46,7 @@ if (Input::exists()) {
 	
 	
 	if ($validation->success()) {
-		echo 'form send';
+		Session::flash('success','Form send to success');
 	} else {
 		foreach ($validation->printErrors() as $error) {
 			echo $error . "<br>";
@@ -60,7 +60,8 @@ if (Input::exists()) {
 
 
 <form method="POST">
-
+	<?php echo Session::flash('success'); ?>
+	
     <div class="form-group">
         <input type="text" name="username" placeholder="Username" value="<?php echo Input::get('username') ?>">
     </div>
