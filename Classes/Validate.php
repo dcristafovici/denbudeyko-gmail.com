@@ -41,7 +41,7 @@ class Validate
 						
 						case 'matches':
 							if($value != $post[$rule_value]){
-								var_dump($post[$rule_value]);
+
 								$this->addError("{$field} не совпадает с {$rule_value}");
 							}
 							break;
