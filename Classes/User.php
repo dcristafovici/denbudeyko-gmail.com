@@ -79,4 +79,15 @@ class User
 		return Session::delete($this->session_name);
 	}
 	
+	public function update($fields, $id = null){
+		
+		if(!$id && $this->isLoggedIn){
+			$id = $this->data()->id;
+		}
+		
+		$this->db->update('users',$id, $fields);
+		
+		
+	}
+	
 }

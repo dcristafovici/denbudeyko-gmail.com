@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11141715-597c-41dd-af6d-f60ead947fc1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/changepassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/changepassword.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index2.php" beforeDir="false" afterPath="$PROJECT_DIR$/index2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user_profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +67,7 @@
       <workItem from="1585630359957" duration="11118000" />
       <workItem from="1585721294935" duration="3863000" />
       <workItem from="1585807362302" duration="9854000" />
+      <workItem from="1585897146677" duration="1885000" />
     </task>
     <servers />
   </component>
@@ -75,10 +75,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="70" key="#PHP" timestamp="1585810222595">
+    <state x="361" y="70" key="#PHP" timestamp="1585898375686">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="70" key="#PHP/0.0.1536.824@0.0.1536.824" timestamp="1585810222595" />
+    <state x="361" y="70" key="#PHP/0.0.1536.824@0.0.1536.824" timestamp="1585898375686" />
     <state x="548" y="227" key="NewPhpClassDialog" timestamp="1585811733031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -107,9 +107,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1585816305667" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585816142169">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585898796011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585816142169" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585898796011" />
   </component>
 </project>

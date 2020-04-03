@@ -2,6 +2,7 @@
 require_once "init.php";
 
 
+
 if (Input::exists()) {
 	
 	if (Token::check(Input::get('token'))) {
@@ -41,14 +42,15 @@ if (Input::exists()) {
 		
 		if ($validation->success()) {
 		    $formValidate = true;
-			Session::flash('success', 'Форма отправлена. Проверьте ваш е-майл');
-		
+			Redirect::to('login.php');
+			$timeCurrent = date("Y-m-d H:i:s");
 			$password = password_hash(Input::get("password"), PASSWORD_DEFAULT);
 			$user = new User();
 			$user->create([
 				"username" => Input::get('username'),
 				"email" => Input::get('email'),
-				"password" => $password
+				"password" => $password,
+				"user_registered" => $timeCurrent
 			
 			]);
 			
@@ -94,11 +96,7 @@ if (Input::exists()) {
 	<?php endif; ?>
 	
 	
-	<?php if ($formValidate): ?>
-      <div class="alert alert-success">
-          <?php echo Session::flash('success') ?>
-      </div>
-	<?php endif ?>
+	
 
 
     <div class="form-group">

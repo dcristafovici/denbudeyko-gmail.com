@@ -41,6 +41,9 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
           </li>
             <?php else: ?>
                 <li class="nav-item">
+                    <a href="profile.php" class="nav-link">Профиль</a>
+                </li>
+                <li class="nav-item">
                     <a href="logout.php" class="nav-link">Выйти</a>
                 </li>
             <?php endif; ?>
@@ -54,7 +57,7 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
           <div class="jumbotron">
           <?php if($profile->isLoggedIn()): ?>
         
-          <h1 class="display-4">Привет, <?php echo $profile->data()->email;?></h1>
+          <h1 class="display-4">Привет, <?php echo $profile->data()->username;?></h1>
           <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
           
         </div>

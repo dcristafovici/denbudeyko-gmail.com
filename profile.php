@@ -1,3 +1,46 @@
+<?php
+
+require_once "init.php";
+
+$user = new User();
+
+if($user->isLoggedIn()){
+
+
+    if(Input::exists()){
+        
+        if(Token::check(Input::get('token'))){
+	
+            $validation = new Validate();
+            $validation->check($_POST, [
+                "username" => ["required" => true, "min" => 5, "max" => 20],
+                "status" => ["min" => 20, "max" => 255]
+            ]);
+            
+            if($validation->success()){
+                Redirect::to('profile.php');
+               $success = true;
+               $user->update([
+				  "username" => Input::get('username'),
+				  "status" => Input::get("status")
+               ]);
+          
+            }
+            else{
+                $allError = $validation->printErrors();
+            }
+        }
+        
+    }
+
+}
+else{
+    echo "Вы не авторизовались" . "<br>";
+    echo "<a href='login.php'>Авторизация</a>";
+	die();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +74,7 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <li class="nav-item">
-                <a href="profile.html" class="nav-link">Профиль</a>
+                <a href="profile.php" class="nav-link">Профиль</a>
               </li>
               <a href="#" class="nav-link">Выйти</a>
             </li>
@@ -42,27 +85,34 @@
    <div class="container">
      <div class="row">
        <div class="col-md-8">
-         <h1>Профиль пользователя - Рахим</h1>
-         <div class="alert alert-success">Профиль обновлен</div>
+         <h1>Профиль пользователя - <?php echo $user->data()->username;?></h1>
          
+         
+         <?php if($success): ?>
+         <div class="alert alert-success">Профиль обновлен</div>
+         <?php endif; ?>
+         <?php if($allError): ?>
          <div class="alert alert-danger">
            <ul>
-             <li>Ошибка валидации</li>
+               <?php foreach($allError as $error): ?>
+                    <li><?php echo $error?></li>
+               <?php endforeach; ?>
            </ul>
          </div>
+         <?php endif; ?>
          <ul>
-           <li><a href="changepassword.html">Изменить пароль</a></li>
+           <li><a href="changepassword.php">Изменить пароль</a></li>
          </ul>
-         <form action="" class="form">
+         <form action="" method="post" class="form">
            <div class="form-group">
              <label for="username">Имя</label>
-             <input type="text" id="username" class="form-control" value="Рахим">
+             <input type="text" name="username" id="username" class="form-control" value="<?php echo $user->data()->username;?>">
            </div>
            <div class="form-group">
              <label for="status">Статус</label>
-             <input type="text" id="status" class="form-control" value="Разрабатываю новые проекты)">
+             <input type="text" name="status" id="status" class="form-control" placeholder="Статус" >
            </div>
-
+             <input type="hidden" name="token" value="<?php echo Token::generate();?>">
            <div class="form-group">
              <button class="btn btn-warning">Обновить</button>
            </div>
