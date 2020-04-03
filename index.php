@@ -1,6 +1,6 @@
 <?php
 require_once 'init.php';
-$profile = new User();
+$user = new User();
 $users = Database::getInstance()->query("SELECT * FROM users", []);
 
 ?>
@@ -27,12 +27,12 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Главная</a>
+            <a class="nav-link" href="index.php">Главная</a>
           </li>
         </ul>
 
         <ul class="navbar-nav">
-            <?php if(!$profile->isLoggedIn()): ?>
+            <?php if(!$user->isLoggedIn()): ?>
           <li class="nav-item">
             <a href="login.php" class="nav-link">Войти</a>
           </li>
@@ -55,12 +55,12 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
     <div class="row">
       <div class="col-md-12">
           <div class="jumbotron">
-          <?php if($profile->isLoggedIn()): ?>
+          <?php if($user->isLoggedIn()): ?>
         
-          <h1 class="display-4">Привет, <?php echo $profile->data()->username;?></h1>
+          <h1 class="display-4">Привет, <?php echo $user->data()->username;?></h1>
           <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
           
-        </div>
+        
           <?php else : ?>
               <h1 class="display-4">Привет, мир</h1>
               <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
@@ -68,6 +68,7 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
               <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
               <a class="btn btn-primary btn-lg" href="#" role="button">Зарегистрироваться</a>
           <?php endif; ?>
+          </div>
       </div>
     </div>
 
