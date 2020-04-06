@@ -90,4 +90,22 @@ class User
 		
 	}
 	
+	public function hasPermissions($key = null){
+		
+		$group = $this->db->get('groups', ['id', '=', $this->data()->group_id]);
+		if($group->count()){
+			
+			$permissions = $group->first()->permissions;
+			$permissions = json_decode($permissions, true);
+			
+			if($permissions[$key]){
+				return true;
+			}
+			
+			
+			
+		}
+		return false;
+	}
+	
 }

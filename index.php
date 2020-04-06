@@ -1,6 +1,10 @@
 <?php
 require_once 'init.php';
-$user = new User();
+$profile = new User();
+
+
+$admin = $profile->hasPermissions('admin');
+
 $users = Database::getInstance()->query("SELECT * FROM users", []);
 
 ?>
@@ -29,10 +33,15 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
           <li class="nav-item">
             <a class="nav-link" href="index.php">Главная</a>
           </li>
+            <?php if($admin): ?>
+            <li class="nav-item">
+                <a href="users/index.php" class="nav-link">Управление пользователями</a>
+            </li>
+            <?php endif; ?>
         </ul>
 
         <ul class="navbar-nav">
-            <?php if(!$user->isLoggedIn()): ?>
+            <?php if(!$profile->isLoggedIn()): ?>
           <li class="nav-item">
             <a href="login.php" class="nav-link">Войти</a>
           </li>
@@ -50,14 +59,13 @@ $users = Database::getInstance()->query("SELECT * FROM users", []);
         </ul>
       </div>
     </nav>
-
   <div class="container">
     <div class="row">
       <div class="col-md-12">
           <div class="jumbotron">
-          <?php if($user->isLoggedIn()): ?>
+          <?php if($profile->isLoggedIn()): ?>
         
-          <h1 class="display-4">Привет, <?php echo $user->data()->username;?></h1>
+          <h1 class="display-4">Привет, <?php echo $profile->data()->username;?></h1>
           <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
           
         

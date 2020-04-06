@@ -2,6 +2,14 @@
 
 require_once "init.php";
 
+$user = new User();
+if($user->isLoggedIn()){
+    echo 'Вы уже авторизовались';
+    echo "<br>";
+    echo "<a href='index.php'>На главную</a>";
+    die();
+}
+
 if (Input::exists()) {
 	
 	if (Token::check(Input::get('token'))) {
@@ -48,7 +56,7 @@ if (Input::exists()) {
 <body class="text-center">
 <form class="form-signin" method="post">
     <img class="mb-4" src="images/apple-touch-icon.png" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Авторизация <?php echo Session::get(Config::get('session.user_session')); ?></h1>
+    <h1 class="h3 mb-3 font-weight-normal">Авторизация </h1>
 
 	<?php if (isset($allErrors)): ?>
 	
